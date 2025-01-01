@@ -40,6 +40,9 @@ List<Todo> filteredTodos(Ref ref) {
 List<Todo> completedTodos(Ref ref) =>
     ref.watch(todoListProvider).where((todo) => todo.completed).toList();
 
-@riverpod
-int uncompletedTodosCount(Ref ref) =>
-    ref.watch(todoListProvider).where((todo) => todo.completed).length;
+// @riverpod
+// int uncompletedTodosCount(Ref ref) =>
+//     ref.watch(todoListProvider).where((todo) => !todo.completed).length;
+
+final uncompletedTodosCount = Provider<int>((ref) =>
+    ref.watch(todoListProvider).where((todo) => !todo.completed).length);
